@@ -10,7 +10,7 @@ type Member = {
 
 export default function EditMemberPage() {
   const [members, setMembers] = useState<Member[]>([])
-  const [selectedId, setSelectedId] = useState<string>('')
+  const [selectedId, setSelectedId] = useState<string | null>(null)
   const [name, setName] = useState('')
   const [grade, setGrade] = useState('')
   const [message, setMessage] = useState('')
@@ -26,7 +26,7 @@ export default function EditMemberPage() {
 
   useEffect(() => {
     if (selectedId !== null) {
-      const member = members.find((m) => m.id === selectedId)
+      const member = members.find((m) => m.id === Number(selectedId))
       if (member) {
         setName(member.name)
         setGrade(member.grade)
@@ -57,8 +57,9 @@ export default function EditMemberPage() {
       <label>
         ユーザー選択:
         <select
-          value={selectedId}
+          value={selectedId ?? ''}
           onChange={(e) => setSelectedId(e.target.value)}
+
         >
           <option value="">選択してください</option>
           {members.map(member => (

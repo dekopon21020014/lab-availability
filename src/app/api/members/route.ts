@@ -1,6 +1,7 @@
 // app/api/submit/route.ts
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/firebase'  // Firebase Firestoreインスタンスをインポート
+import { FieldValue } from 'firebase-admin/firestore'
 
 interface Member {
   name: string
@@ -25,7 +26,7 @@ export async function POST(req: NextRequest) {
       name,
       grade,
       status: 0,  // 初期値は0
-      createdAt: db.FieldValue.serverTimestamp(),  // Firestoreで作成日時を記録
+      createdAt: FieldValue.serverTimestamp(),  // Firestoreで作成日時を記録
     })
 
     return NextResponse.json({ message: '保存しました' })
