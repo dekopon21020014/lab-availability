@@ -34,14 +34,20 @@ export async function PUT(req: NextRequest) {
   const body = await req.json()
   const { name, grade, status } = body
 
+  const updateData: Record<string, any> = {}
+  if (name !== undefined) updateData.name = name
+  if (grade !== undefined) updateData.grade = grade
+  if (status !== undefined) updateData.status = status
+
   if (!id) {
     return NextResponse.json({ error: 'IDが指定されていません' }, { status: 400 })
   }
 
   try {
     // Firestore更新処理など
-    const docRef = db.collection('members').doc(id)
-    await docRef.update({ name, grade, status })
+    const docRef = db.collection('members').doc(id)    
+  
+    await db.collection('members').doc(id).update(updateData)
 
     return NextResponse.json({ message: '更新しました' })
   } catch (err) {
