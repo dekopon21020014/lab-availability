@@ -1,0 +1,36 @@
+.container {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.membersTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+}
+
+.membersTable th, .membersTable td {
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+}
+
+.membersTable th {
+  background-color: #f4f4f4;
+}
+
+.statusPresent {
+  color: green;
+  font-weight: bold;
+}
+
+.statusAbsent {
+  color: red;
+  font-weight: bold;
+}
